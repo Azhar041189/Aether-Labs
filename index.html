@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aether Labs - The Pantheon of AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary-glow: #22d3ee;
+        --secondary-glow: #a855f7;
+      }
+      body {
+        background-color: #020617; /* Slate 950 */
+        color: #e2e8f0;
+        font-family: 'Rajdhani', sans-serif;
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4, h5, h6, .font-tech {
+        font-family: 'Orbitron', sans-serif;
+      }
+      
+      /* --- ADVANCED SCROLLBAR --- */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0f172a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #334155 0%, #475569 100%);
+        border-radius: 3px;
+        border: 1px solid #1e293b;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+        box-shadow: 0 0 10px var(--primary-glow);
+      }
+
+      /* --- GLASS & GLOW UTILS --- */
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      }
+      .neon-text {
+        text-shadow: 0 0 5px var(--primary-glow), 0 0 10px var(--primary-glow);
+      }
+      .neon-border {
+        box-shadow: 0 0 5px var(--primary-glow), inset 0 0 10px rgba(34, 211, 238, 0.1);
+      }
+
+      /* --- 3D PERSPECTIVE GRID BACKGROUND --- */
+      /* Note: Animations handled by Framer Motion for Parallax, standard styles here */
+      .perspective-grid {
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        background-image: 
+          linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
+        background-size: 60px 60px;
+        transform: perspective(500px) rotateX(60deg);
+        /* Animation removed for JS control */
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+      }
+
+      /* --- STARS BACKGROUND --- */
+      .stars {
+        width: 100%; height: 100%;
+        background: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px);
+        background-size: 550px 550px;
+        /* Animation removed for JS control */
+      }
+
+      /* --- CRT SCANLINE EFFECT --- */
+      .scanlines {
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        background: linear-gradient(
+          to bottom,
+          rgba(255,255,255,0),
+          rgba(255,255,255,0) 50%,
+          rgba(0,0,0,0.1) 50%,
+          rgba(0,0,0,0.1)
+        );
+        background-size: 100% 4px;
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0.15;
+      }
+
+      /* --- 3D CARD HOVER EFFECTS --- */
+      .card-3d-wrapper {
+        perspective: 1000px;
+      }
+      .card-3d-inner {
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s;
+        transform-style: preserve-3d;
+      }
+      .card-3d-wrapper:hover .card-3d-inner {
+        transform: rotateY(5deg) rotateX(5deg) translateZ(10px);
+        box-shadow: 
+          -5px 5px 20px rgba(0,0,0,0.5), 
+          0 0 15px rgba(34, 211, 238, 0.3);
+      }
+      
+      /* --- ANIMATIONS --- */
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .text-shine {
+        background: linear-gradient(to right, #4d4d4d 0, #fff 10%, #4d4d4d 20%);
+        background-position: 0;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3s infinite linear;
+        animation-fill-mode: forwards;
+        font-weight: 900;
+        background-size: 200%;
+      }
+      @keyframes shine {
+        0% { background-position: 0; }
+        60% { background-position: 180px; }
+        100% { background-position: 180px; }
+      }
+
+      .animate-pulse-slow {
+        animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 0.8; }
+      }
+
+      .animate-gradient-xy {
+        animation: gradient-xy 15s ease infinite;
+        background-size: 400% 400%;
+      }
+      @keyframes gradient-xy {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+      }
+
+      /* --- DEEP SPACE THEME (HIGH CONTRAST) --- */
+      .deep-space {
+        --bg-color: #000000;
+      }
+
+      /* Backgrounds & Panels */
+      .deep-space .glass-panel,
+      .deep-space .bg-slate-900\/30,
+      .deep-space .bg-slate-900\/40,
+      .deep-space .bg-slate-900\/50,
+      .deep-space .bg-slate-900\/80,
+      .deep-space .bg-slate-950,
+      .deep-space .bg-slate-950\/30,
+      .deep-space .bg-slate-950\/50,
+      .deep-space .bg-slate-950\/80,
+      .deep-space .bg-slate-900 {
+        background-color: #000000 !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+      
+      .deep-space .bg-slate-800,
+      .deep-space .bg-slate-800\/50,
+      .deep-space .bg-slate-800\/80 {
+         background-color: #1a1a1a !important;
+         backdrop-filter: none !important;
+      }
+
+      /* Borders */
+      .deep-space .border-slate-800, 
+      .deep-space .border-slate-700,
+      .deep-space .border-slate-600,
+      .deep-space .border-slate-800\/50,
+      .deep-space .border-slate-700\/50 {
+        border-color: #ffffff !important;
+        border-width: 1px !important;
+      }
+      
+      .deep-space .border-transparent {
+         border-color: transparent !important;
+      }
+
+      /* Text Contrast */
+      .deep-space .text-slate-400,
+      .deep-space .text-slate-500,
+      .deep-space .text-slate-600 {
+        color: #e2e8f0 !important;
+      }
+      .deep-space .text-slate-300,
+      .deep-space .text-slate-200,
+      .deep-space .text-slate-100 {
+        color: #ffffff !important;
+      }
+
+      /* Background Elements */
+      .deep-space .stars,
+      .deep-space .perspective-grid,
+      .deep-space .scanlines,
+      .deep-space .absolute.inset-0.z-2 {
+         display: none !important;
+      }
+      
+      /* Active Highlight */
+      .deep-space .neon-text {
+         text-shadow: none !important;
+         color: #00ffff !important;
+      }
+      
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "d3": "https://aistudiocdn.com/d3@^7.9.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25",
+    "jspdf": "https://aistudiocdn.com/jspdf@^2.5.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
